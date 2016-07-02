@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BWQuakeShopV1%2E1</fullName>
+    <types>
+        <members>BWEarthquakeInfoClass</members>
+        <members>BW_EarthquakePlotController</members>
+        <members>MockHttpResponseGenerator</members>
+        <members>RESTCallout</members>
+        <members>TestBWEarthquakeInfoClass</members>
+        <members>TestBWEarthquakeplotController</members>
+        <members>TestHttpCallout</members>
+        <members>TestMockHttpGenerator</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>BW_EarthquakePlot</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>BW_Configuration__c.Encrypted_Info__c</members>
+        <members>BW_Configuration__c.Name__c</members>
+        <members>BW_Configuration__c.Value__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>BW_Configuration__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>BW_Configuration__c-BW Configuration Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Geoname_Api</members>
+        <members>Google_Apis</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <version>31.0</version>
+</Package>
