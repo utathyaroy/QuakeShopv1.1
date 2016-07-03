@@ -4,24 +4,25 @@ public class BW_EarthquakePlotController {
     public BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl topResults{get;set;} 
     
     public 	BW_EarthquakePlotController(){
-        BWEarthquakeInfoClass rstcall = new BWEarthquakeInfoClass();
-        topResults = (BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl)rstcall.getInfo('GetEQInfoTopTen', null);
-        
-        //Requested Partition for caching. Request Pending
-        //topResults = (RESTCallcouts.EarthquakeResponseObject)Cache.Session.get('topeartquakedata');
+
     }
     //Init Method to Call Webservice to Call the Top Ten Earthquake Service and cache it.
-     /* public void init() {  
+    public void init() {  
         system.debug('Inside Init');
-        if (!Cache.Session.contains('topeartquakedata')) {
-        System.debug('Inside Cache If');
-        RESTCallcouts rstcall = new RESTCallcouts();
-        RESTCallcouts.EarthquakeResponseObject tr = (RESTCallcouts.EarthquakeResponseObject)rstcall.getCalloutResponseContents('');
-        Cache.Session.put('topeartquakedata', tr);
-        system.debug(Cache.Session.get('topeartquakedata'));
+        
+        if (!Cache.Org.contains('tabs.MyPartition.topeartquakedata')) {
+            System.debug('Inside Cache If');
+            BWEarthquakeInfoClass rstcall = new BWEarthquakeInfoClass();
+            topResults = (BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl)rstcall.getInfo('GetEQInfoTopTen', null);
+            Cache.Org.put('tabs.MyPartition.topeartquakedata', topResults, 3600);
+        }else{
+            system.debug('inside else');
+            topResults = (BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl)Cache.Org.get('tabs.MyPartition.topeartquakedata');
+            
+            
         }
         
-        }*/
+    }
             
     public void callGetInfo(){
         BWEarthquakeInfoClass rstcall = new BWEarthquakeInfoClass();
