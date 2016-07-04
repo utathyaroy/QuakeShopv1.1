@@ -9,8 +9,8 @@ public class BW_EarthquakePlotController {
     //Init Method to Call Webservice to Call the Top Ten Earthquake Service and cache it.
     public void init() {  
         system.debug('Inside Init');
-        
-        if (!Cache.Org.contains('tabs.MyPartition.topeartquakedata')) {
+        try{
+            if (!Cache.Org.contains('tabs.MyPartition.topeartquakedata')) {
             System.debug('Inside Cache If');
             BWEarthquakeInfoClass rstcall = new BWEarthquakeInfoClass();
             topResults = (BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl)rstcall.getInfo('GetEQInfoTopTen', null);
@@ -18,9 +18,21 @@ public class BW_EarthquakePlotController {
         }else{
             system.debug('inside else');
             topResults = (BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl)Cache.Org.get('tabs.MyPartition.topeartquakedata');
-            
+            if(topResults==null){// Dev Org Cache trial Expires in 6 months. this is a precautionry code block
+               	BWEarthquakeInfoClass rstcall = new BWEarthquakeInfoClass();
+           		topResults = (BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl)rstcall.getInfo('GetEQInfoTopTen', null);
+                
+ 
+            }
+        }
+        }Catch(Exception e){
+            topResults = new BWEarthquakeInfoClass.BWEarthquakeInfoResponseImpl();
+            topResults.StatusDesc = 'ERROR';
+            topResults.errorMessage = 'Error:'+e.getMessage();
             
         }
+        
+
         
     }
             
